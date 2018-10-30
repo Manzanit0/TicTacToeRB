@@ -13,16 +13,25 @@ class Board
     (row*3 + column)
   end
 
-  def tile(row, column)
-    @simplified_board[to_list_input(row, column)]
+  def tile(*args)
+    case args.size
+    when 1
+      position = args[0]
+      @simplified_board[position]
+    when 2
+      row, column = args[0], args[1]
+      @simplified_board[to_list_input(row, column)]
+    else
+      raise ArgumentError.new("wrong amount of arguments")
+    end
   end
 
   def row(index)
     @simplified_board.each_slice(3).to_a[index]
   end
 
-  def column(column)
-    @simplified_board.each_slice(3).to_a.transpose[column]
+  def column(index)
+    @simplified_board.each_slice(3).to_a.transpose[index]
   end
 
   def diagonal
@@ -45,8 +54,21 @@ class Board
     tiles
   end
 
-  def check_tile(row, column, player)
-    @simplified_board[to_list_input(row, column)] = player.symbol
+  def available_tiles
+   @simplified_board.each_index.select { |index| @simplified_board[index] == UNCHECKED_TILE}
+  end
+
+  def check_tile(*args)
+    case args.size
+    when 2
+      position, player = args[0], args[1]
+      @simplified_board[position] = player.symbol
+    when 3
+      row, column, player = args[0], args[1], args[2]
+      @simplified_board[to_list_input(row, column)] = player.symbol
+    else
+      raise ArgumentError.new("wrong amount of arguments")
+    end
   end
 
   def is_board_complete?

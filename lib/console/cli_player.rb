@@ -10,7 +10,7 @@ class CliPlayer < Player
   def get_move(board)
     @out.print "\nPlease input your move (row,column): "
     answer = @in.gets.chomp
-    
+
     until valid_move?(answer, board)
       @out.print "Please input a valid move with the following format (row,column): "
       answer = @in.gets.chomp

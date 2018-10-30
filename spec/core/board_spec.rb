@@ -12,17 +12,31 @@ RSpec.describe Board do
     end
   end
 
-  it "checks a tile with the player's symbol" do
+  it "checks a tile with the player's symbol given the row/column" do
     player = Machine.new("X")
     board = Board.new(3)
     board.check_tile(1, 2, player)
     expect(board.tile(1, 2)).to eql("X")
   end
 
-  it "validates if all the tiles are checked" do
+  it "checks a tile with the player's symbol given the position" do
+    player = Machine.new("X")
+    board = Board.new(3)
+    board.check_tile(2, player)
+    expect(board.tile(2)).to eql("X")
+  end
+
+  it "validates if all the tiles are checked given the row/column" do
     player = Machine.new("X")
     board = Board.new(1)
     board.check_tile(0, 0, player) # In a 1x1, this is the only tile.
+    expect(board.is_board_complete?).to eql(true)
+  end
+
+  it "validates if all the tiles are checked given the position" do
+    player = Machine.new("X")
+    board = Board.new(1)
+    board.check_tile(0, player) # In a 1x1, this is the only tile.
     expect(board.is_board_complete?).to eql(true)
   end
 
@@ -48,6 +62,17 @@ RSpec.describe Board do
     expect(diagonal[0]).to eql(board.tile(0, 2))
     expect(diagonal[1]).to eql(board.tile(1, 1))
     expect(diagonal[2]).to eql(board.tile(2, 0))
+  end
+
+  it "gets the indexes of all the availiable tiles in the board" do
+    board = Board.new(3)
+    player = Machine.new("X")
+    board.check_tile(0, player)
+    board.check_tile(1, player)
+    expect(board.available_tiles.size).to eql(7)
+    expect(board.available_tiles.index(0)).to eql(nil)
+    expect(board.available_tiles.index(1)).to eql(nil)
+    expect(board.available_tiles.index(5)).to eql(3)
   end
 
   it "marks the board as finished/won if a player has a whole ROW checked" do

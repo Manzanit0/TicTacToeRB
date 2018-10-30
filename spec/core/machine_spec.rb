@@ -13,7 +13,7 @@ RSpec.describe Machine do
     player = Machine.new("X")
     move = player.get_move(board)
 
-    expect(move).to eql([0, 0])
+    expect(move).to eql(0)
   end
 
   it "Gets the second availiable tile in the board" do
@@ -22,6 +22,6 @@ RSpec.describe Machine do
     board.check_tile(0, 0, player1)
     move = player1.get_move(board)
 
-    expect(move).to eql([0, 1])
+    expect(move).to eql(1)
   end
 end

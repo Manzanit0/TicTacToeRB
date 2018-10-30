@@ -2,7 +2,7 @@ require "rspec"
 require "console/cli_player"
 
 RSpec.describe CliPlayer do
-  it "Accepts correct input and parses it" do
+  it "accepts correct input and parses it" do
     input = StringIO.new("1,2")
     output = StringIO.new
     player = CliPlayer.new("X", output, input)
@@ -12,7 +12,7 @@ RSpec.describe CliPlayer do
     expect(valid_move).to eql([1, 2])
   end
 
-  it "Prompts for input again if the format is incorrect" do
+  it "prompts for input again if the format is incorrect" do
     input = StringIO.new("1,2")
     output = StringIO.new
     player = CliPlayer.new("X", output, input)
@@ -23,7 +23,7 @@ RSpec.describe CliPlayer do
     expect(valid_move).to eql([1, 1])
   end
 
-  it "Prompts for input again if the tile is already taken" do
+  it "prompts for input again if the tile is already taken" do
     output = StringIO.new
     input = StringIO.new("1,1\n0,1")
     player = CliPlayer.new("X", output, input)
@@ -34,5 +34,15 @@ RSpec.describe CliPlayer do
     move = player.get_move(board)
 
     expect(move).to eql([0,1])
+  end
+
+  it "makes a move in the board given some input" do
+    input = StringIO.new("1,2")
+    output = StringIO.new
+    player = CliPlayer.new("X", output, input)
+    board = Board.new(3)
+    player.make_move(board)
+
+    expect(board.tile(1,2)).to eql(player.symbol)
   end
 end
