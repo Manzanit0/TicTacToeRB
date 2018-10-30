@@ -75,8 +75,8 @@ class Board
     @simplified_board.does_not_include?(UNCHECKED_TILE)
   end
 
-  def is_free?(move)
-    @simplified_board[to_list_input(move[0], move[1])] == UNCHECKED_TILE
+  def is_free?(position)
+    @simplified_board[position] == UNCHECKED_TILE
   end
 
   def has_won?(player)

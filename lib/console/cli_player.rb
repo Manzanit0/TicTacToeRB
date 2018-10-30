@@ -8,24 +8,19 @@ class CliPlayer < Player
   end
 
   def get_move(board)
-    @out.print "\nPlease input your move (row,column): "
+    @out.print "\nPlease input your move: "
     answer = @in.gets.chomp
 
     until valid_move?(answer, board)
-      @out.print "Please input a valid move with the following format (row,column): "
+      @out.print "Please input a valid move: "
       answer = @in.gets.chomp
     end
-
-    parse_input(answer)
+    answer.to_i
   end
 
   private
-  def parse_input(answer)
-    answer.split(",").map { |s| s.to_i }
-  end
-
   def valid_move?(answer, board)
-    r = /^([0-2]),([0-2])$/
-    answer.match(r) && board.is_free?(parse_input(answer))
+    regex = Regexp.new("^([0-#{board.size*board.size}])$")
+    answer.match(regex) && board.is_free?(answer.to_i)
   end
 end

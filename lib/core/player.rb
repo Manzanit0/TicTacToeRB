@@ -6,13 +6,8 @@ class Player
   end
 
   def make_move(board)
-    move = get_move(board) # Machine class returns position, CLI returns matrix.
-
-    if (move.is_a? Enumerable)
-      board.check_tile(move[0], move[1], self)
-    else
-      board.check_tile(move, self)
-    end
+    move = get_move(board)
+    board.check_tile(move, self)
   end
 
   def get_move(board)
