@@ -28,8 +28,7 @@ class ConsoleIO
 
   def print_row(board, row)
     @out.print "| "
-    (0...board.size).each do |position|
-      token = board.tile(row, position)
+    board.row(row).each do |token|
       @out.print "#{token} | "
     end
   end

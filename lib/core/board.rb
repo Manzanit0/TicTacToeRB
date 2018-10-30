@@ -8,22 +8,8 @@ class Board
     @simplified_board = Array.new(size*size, UNCHECKED_TILE)
   end
 
-  # This method simply parses the row/column input to a list-like one. Only for refactoring purposes.
-  def to_list_input(row, column)
-    (row*3 + column)
-  end
-
-  def tile(*args)
-    case args.size
-    when 1
-      position = args[0]
-      @simplified_board[position]
-    when 2
-      row, column = args[0], args[1]
-      @simplified_board[to_list_input(row, column)]
-    else
-      raise ArgumentError.new("wrong amount of arguments")
-    end
+  def tile(position)
+    @simplified_board[position]
   end
 
   def row(index)
@@ -58,17 +44,8 @@ class Board
    @simplified_board.each_index.select { |index| @simplified_board[index] == UNCHECKED_TILE}
   end
 
-  def check_tile(*args)
-    case args.size
-    when 2
-      position, player = args[0], args[1]
-      @simplified_board[position] = player.symbol
-    when 3
-      row, column, player = args[0], args[1], args[2]
-      @simplified_board[to_list_input(row, column)] = player.symbol
-    else
-      raise ArgumentError.new("wrong amount of arguments")
-    end
+  def check_tile(position, player)
+    @simplified_board[position] = player.symbol
   end
 
   def is_board_complete?
