@@ -8,7 +8,7 @@ class CliPlayer < Player
   end
 
   def get_move(board)
-    @out.print "\nPlease input your move: "
+    @out.print "\nPlease input your move (tiles go from 0 to 8): "
     answer = @in.gets.chomp
 
     until valid_move?(answer, board)
