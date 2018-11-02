@@ -4,24 +4,48 @@ require "core/hard_machine"
 
 RSpec.describe HardMachine do
   it "chooses a winning move when it has the occasion" do
-    board = Board.create_from_array([
+    move = get_best_move([
       "X", " ", "X",
       " ", "O", " ",
       " ", " ", "O"
     ])
-    player = HardMachine.new("X")
-    move = player.get_move(board)
+
     expect(move).to eql(1)
   end
 
-  it "chooses a winning move when it has the occasion, second test" do
-    board = Board.create_from_array([
+  it "chooses a winning move when it has the occasion (II)" do
+    move = get_best_move([
       "X", " ", " ",
       " ", "O", " ",
       "X", " ", "O"
     ])
-    player = HardMachine.new("X")
-    move = player.get_move(board)
+
     expect(move).to eql(3)
+  end
+
+  it "chooses a blocking move when the opponent is going to win in the following turn" do
+    move = get_best_move([
+      " ", " ", "X",
+      " ", "O", " ",
+      "X", " ", "O"
+    ])
+
+    expect(move).to eql(0)
+  end
+
+  it "chooses a blocking move when the opponent is going to win in the following turn (II)" do
+    move = get_best_move([
+      " ", " ", "X",
+      "X", " ", "O",
+      "O", " ", "O"
+    ])
+
+    expect(move).to eql(7)
+  end
+
+  def get_best_move(game_status)
+    board = Board.create_from_array(game_status)
+    player = HardMachine.new("X")
+    player.get_move(board)
   end
 end
