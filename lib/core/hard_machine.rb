@@ -4,26 +4,32 @@ require "core/player"
 class HardMachine < Player
   def initialize(symbol)
     super(symbol)
+    @opponent = get_opponent
   end
 
   def get_move(board)
-    opponent = Player.new(self.symbol == "X" ? "O" : "X")
     board.available_tiles.each do |index|
+      new_board = create_new_board(board, index, self)
+      return index if score(new_board) == 10
 
-      board.check_tile(index, self)
-      if(board.has_won?(self))
-        board.uncheck_tile(index)
-        return index
-      end
-
-      board.check_tile(index, opponent)
-      if(board.has_won?(opponent))
-        board.uncheck_tile(index)
-        return index
-      end
-
-      board.uncheck_tile(index)
+      new_board = create_new_board(board, index, @opponent)
+      return index if score(new_board) == -10
     end
     nil
+  end
+
+  def score(board)
+   return 10 if board.has_won?(self)
+   return -10 if board.has_won?(@opponent)
+  end
+
+  def get_opponent
+    Player.new(self.symbol == "X" ? "O" : "X")
+  end
+
+  def create_new_board(board, move, player)
+    new_board = board.clone
+    new_board.check_tile(move, player)
+    new_board
   end
 end

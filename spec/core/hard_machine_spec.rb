@@ -43,6 +43,29 @@ RSpec.describe HardMachine do
     expect(move).to eql(7)
   end
 
+  it "gives a winning move a score of 10" do
+    board = Board.create_from_array([
+      "X", " ", " ",
+      "X", "O", " ",
+      "X", " ", "O"
+    ])
+    player = HardMachine.new("X")
+    score = player.score(board)
+    expect(score).to eql(10)
+  end
+
+  it "gives a loosing move a score of -10" do
+    board = Board.create_from_array([
+      "O", " ", " ",
+      " ", "O", " ",
+      "X", "X", "O"
+    ])
+    player = HardMachine.new("X")
+    score = player.score(board)
+    expect(score).to eql(-10)
+
+  end
+
   def get_best_move(game_status)
     board = Board.create_from_array(game_status)
     player = HardMachine.new("X")

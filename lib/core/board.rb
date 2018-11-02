@@ -11,7 +11,13 @@ class Board
 
   def self.create_from_array(array)
     instance = Board.new(3)
-    instance.board = array
+    instance.board = array.clone
+    instance
+  end
+
+  def clone
+    instance = Board.new(@size)
+    instance.board = board.clone
     instance
   end
 
