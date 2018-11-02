@@ -2,29 +2,36 @@ class Board
   UNCHECKED_TILE = ' '
 
   attr_reader :size
+  attr_accessor :board
 
   def initialize(size)
     @size = size
-    @simplified_board = Array.new(size*size, UNCHECKED_TILE)
+    @board = Array.new(size*size, UNCHECKED_TILE)
+  end
+
+  def self.create_from_array(array)
+    instance = Board.new(3)
+    instance.board = array
+    instance
   end
 
   def tile(position)
-    @simplified_board[position]
+    @board[position]
   end
 
   def row(index)
-    @simplified_board.each_slice(3).to_a[index]
+    @board.each_slice(3).to_a[index]
   end
 
   def column(index)
-    @simplified_board.each_slice(3).to_a.transpose[index]
+    @board.each_slice(3).to_a.transpose[index]
   end
 
   def diagonal
     tiles = []
     position = 0
     until position > (size*size - 1) # In a 3x3 board, that would be 8 due to 0-based indexes.
-      tiles << @simplified_board[position]
+      tiles << @board[position]
       position = position + @size + 1
     end
     tiles
@@ -34,26 +41,30 @@ class Board
     tiles = []
     position = @size - 1
     until position > (@size*@size - @size)
-      tiles << @simplified_board[position]
+      tiles << @board[position]
       position = position + (@size - 1)
     end
     tiles
   end
 
   def available_tiles
-   @simplified_board.each_index.select { |index| @simplified_board[index] == UNCHECKED_TILE}
+   @board.each_index.select { |index| @board[index] == UNCHECKED_TILE}
   end
 
   def check_tile(position, player)
-    @simplified_board[position] = player.symbol
+    @board[position] = player.symbol
+  end
+
+  def uncheck_tile(position)
+    @board[position] = UNCHECKED_TILE
   end
 
   def is_board_complete?
-    @simplified_board.does_not_include?(UNCHECKED_TILE)
+    @board.does_not_include?(UNCHECKED_TILE)
   end
 
   def is_free?(position)
-    @simplified_board[position] == UNCHECKED_TILE
+    @board[position] == UNCHECKED_TILE
   end
 
   def has_won?(player)
