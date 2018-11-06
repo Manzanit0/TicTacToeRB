@@ -57,16 +57,16 @@ class Board
    @board.each_index.select { |index| @board[index] == UNCHECKED_TILE}
   end
 
-  def check_tile(position, player)
+  def mark_tile(position, player)
     @board[position] = player.symbol
   end
 
-  def uncheck_tile(position)
+  def unmark_tile(position)
     @board[position] = UNCHECKED_TILE
   end
 
-  def is_board_complete?
-    @board.does_not_include?(UNCHECKED_TILE)
+  def complete?
+    !@board.include?(UNCHECKED_TILE)
   end
 
   def is_free?(position)
@@ -82,11 +82,5 @@ class Board
       return true if row(index).all? { |tile| tile == player.symbol }
     end
     false
-  end
-end
-
-module Enumerable
-  def does_not_include?(item)
-    !include?(item)
   end
 end

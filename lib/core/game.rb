@@ -1,26 +1,26 @@
 require "core/board"
 
 class Game
-  attr_accessor :board, :currentPlayer
+  attr_accessor :board, :current_player
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @currentPlayer = player1
-    @board = Board.new(3) # ATM, hardcoded. Down the road, we inyect it.
+    @current_player = player1
+    @board = Board.new(3) # ATM, hardcoded. Down the road, we inject it.
   end
 
   def make_move
-    @currentPlayer.make_move(@board)
+    @current_player.make_move(@board)
     toggle_player
   end
 
   def toggle_player
-    @currentPlayer = @currentPlayer == @player1 ? @player2 : @player1
+    @current_player = @current_player == @player1 ? @player2 : @player1
   end
 
   def has_ended?
-    @board.is_board_complete? || @board.has_won?(@player1) || @board.has_won?(@player2)
+    @board.complete? || @board.has_won?(@player1) || @board.has_won?(@player2)
   end
 
   def winner

@@ -47,8 +47,8 @@ RSpec.describe ConsoleIO do
     player1 = Player.new("X")
     player2 = Player.new("O")
     game = Game.new(player2, player2)
-    game.board.check_tile(3, player1)
-    game.board.check_tile(5, player2)
+    game.board.mark_tile(3, player1)
+    game.board.mark_tile(5, player2)
     
     output = StringIO.new
     io = ConsoleIO.new(output)
@@ -63,9 +63,9 @@ RSpec.describe ConsoleIO do
     player1 = Player.new("X")
     player2 = Player.new("O")
     game = Game.new(player1, player2)
-    game.board.check_tile(3, player1)
-    game.board.check_tile(4, player1)
-    game.board.check_tile(5, player1)
+    game.board.mark_tile(3, player1)
+    game.board.mark_tile(4, player1)
+    game.board.mark_tile(5, player1)
     
     output = StringIO.new
     io = ConsoleIO.new(output)

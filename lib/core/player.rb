@@ -7,7 +7,7 @@ class Player
 
   def make_move(board)
     move = get_move(board)
-    board.check_tile(move, self)
+    board.mark_tile(move, self)
   end
 
   def get_move(board)

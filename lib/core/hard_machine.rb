@@ -18,7 +18,7 @@ class HardMachine < Player
   end
 
   def minimax(board, depth)
-    return score(board, depth) if (board.is_board_complete? || board.has_won?(self) || board.has_won?(@opponent))
+    return score(board, depth) if (board.complete? || board.has_won?(self) || board.has_won?(@opponent))
     depth += 1
     scores, moves = [], []
 
@@ -59,7 +59,7 @@ class HardMachine < Player
 
   def create_board_with_new_state(board, move)
     new_board = board.clone
-    new_board.check_tile(move, @current_player)
+    new_board.mark_tile(move, @current_player)
     new_board
   end
 end

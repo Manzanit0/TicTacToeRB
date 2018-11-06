@@ -28,7 +28,7 @@ RSpec.describe CliPlayer do
     player = CliPlayer.new("X", output, input)
     opponent = Machine.new("O")
     board = Board.new(3)
-    board.check_tile(1, opponent)
+    board.mark_tile(1, opponent)
 
     move = player.get_move(board)
 

@@ -8,35 +8,35 @@ RSpec.describe GameFactory do
     factory = GameFactory.new
     game = factory.create_game(GameOptions::HUMAN_VS_HUMAN)
 
-    expect(game.currentPlayer.instance_of?(CliPlayer)).to eql(true)
+    expect(game.current_player.instance_of?(CliPlayer)).to eql(true)
     game.toggle_player # TODO: This is a smell - Find out if there is a way of checking private variables
-    expect(game.currentPlayer.instance_of?(CliPlayer)).to eql(true)
+    expect(game.current_player.instance_of?(CliPlayer)).to eql(true)
   end
 
   it "Creates a Human vs Computer game" do
     factory = GameFactory.new
     game = factory.create_game(GameOptions::HUMAN_VS_MACHINE)
 
-    expect(game.currentPlayer.instance_of?(CliPlayer)).to eql(true)
+    expect(game.current_player.instance_of?(CliPlayer)).to eql(true)
     game.toggle_player
-    expect(game.currentPlayer.instance_of?(Machine)).to eql(true)
+    expect(game.current_player.instance_of?(Machine)).to eql(true)
   end
 
   it "Creates a Computer vs Human game" do
     factory = GameFactory.new
     game = factory.create_game(GameOptions::MACHINE_VS_HUMAN)
 
-    expect(game.currentPlayer.instance_of?(Machine)).to eql(true)
+    expect(game.current_player.instance_of?(Machine)).to eql(true)
     game.toggle_player
-    expect(game.currentPlayer.instance_of?(CliPlayer)).to eql(true)
+    expect(game.current_player.instance_of?(CliPlayer)).to eql(true)
   end
   it "Creates a Computer vs Computer game" do
     factory = GameFactory.new
     game = factory.create_game(GameOptions::MACHINE_VS_MACHINE)
 
-    expect(game.currentPlayer.instance_of?(Machine)).to eql(true)
+    expect(game.current_player.instance_of?(Machine)).to eql(true)
     game.toggle_player
-    expect(game.currentPlayer.instance_of?(Machine)).to eql(true)
+    expect(game.current_player.instance_of?(Machine)).to eql(true)
   end
 
   it "Raises an error if the option is not valid" do
