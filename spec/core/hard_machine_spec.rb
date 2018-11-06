@@ -1,4 +1,5 @@
 require "rspec"
+require "core/game"
 require "core/board"
 require "core/hard_machine"
 
@@ -50,7 +51,7 @@ RSpec.describe HardMachine do
       "X", " ", "O"
     ])
     player = HardMachine.new("X")
-    score = player.score(board)
+    score = player.score(board, 0)
     expect(score).to eql(10)
   end
 
@@ -61,14 +62,47 @@ RSpec.describe HardMachine do
       "X", "X", "O"
     ])
     player = HardMachine.new("X")
-    score = player.score(board)
+    score = player.score(board, 0)
     expect(score).to eql(-10)
 
+  end
+
+  it "draws a game against another HardMachine" do
+    player1 = HardMachine.new("X")
+    player2 = HardMachine.new("O")
+    game = Game.new(player1, player2)
+
+    play_game(game)
+
+    expect(game.has_ended?).to eql(true)
+    expect(game.winner).to eql(nil)
+  end
+
+  it "wins a game against another HardMachine which has made a mistake" do
+    player1 = HardMachine.new("X")
+    player2 = HardMachine.new("O")
+    game = Game.new(player1, player2)
+    game.board = Board.create_from_array([
+      "X", " ", " ",
+      "O", " ", " ",
+      " ", " ", " "
+    ])
+
+    play_game(game)
+
+    expect(game.has_ended?).to eql(true)
+    expect(game.winner).to eql(player1)
   end
 
   def get_best_move(game_status)
     board = Board.create_from_array(game_status)
     player = HardMachine.new("X")
     player.get_move(board)
+  end
+
+  def play_game(game)
+    until game.has_ended?
+      game.make_move
+    end
   end
 end

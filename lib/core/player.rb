@@ -14,4 +14,14 @@ class Player
     raise NotImplementedError.
             new("#{self.class.name}# has not implemented the method get_move")
   end
+
+  def ==(other)
+    return false if other == nil
+    @symbol == other.symbol
+  end
+
+  def !=(other)
+    return false if other == nil
+    @symbol != other.symbol
+  end
 end

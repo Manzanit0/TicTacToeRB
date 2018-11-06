@@ -1,5 +1,4 @@
 require "core/board"
-require "core/player"
 
 class Game
   attr_accessor :board, :currentPlayer
