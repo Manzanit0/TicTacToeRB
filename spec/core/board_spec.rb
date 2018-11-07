@@ -6,7 +6,7 @@ RSpec.describe Board do
   it "populates the board with tiles when an object is created" do
     board = Board.new(3)
     for i in 0..8
-      expect(board.tile(i)).to eql(" ")
+      expect(board.tile(i)).to eql(Board::UNCHECKED_TILE)
     end
   end
 
