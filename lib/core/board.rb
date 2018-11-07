@@ -21,6 +21,12 @@ class Board
     instance
   end
 
+  def clone_with_new_state(move, player)
+    instance = self.clone
+    instance.mark_tile(move, player)
+    instance
+  end
+
   def total_tiles
     @size * @size
   end

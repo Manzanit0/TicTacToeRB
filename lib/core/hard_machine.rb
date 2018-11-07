@@ -18,13 +18,16 @@ class HardMachine < Player
     @choice
   end
 
+  private
+
   def minimax(board, depth)
-    return score(board, depth) if (board.complete? || board.won?(self) || board.won?(@opponent))
+    return score(board, depth) if board.complete? || board.won?(self) || board.won?(@opponent)
+
     depth += 1
     scores, moves = [], []
 
     board.available_tiles.each do |tile|
-      new_board = create_board_with_new_state(board, tile)
+      new_board = board.clone_with_new_state(tile, @current_player)
       toggle_player # Swap turn state before entering a new turn simulation.
       scores << minimax(new_board, depth)
       moves << tile
@@ -52,15 +55,7 @@ class HardMachine < Player
     end
   end
 
-  private
-
   def toggle_player
     @current_player = @current_player == self ? @opponent : self
-  end
-
-  def create_board_with_new_state(board, move)
-    new_board = board.clone
-    new_board.mark_tile(move, @current_player)
-    new_board
   end
 end

@@ -44,29 +44,6 @@ RSpec.describe HardMachine do
     expect(move).to eql(7)
   end
 
-  it "gives a winning move a score of 10" do
-    board = Board.create_from_array([
-      "X", " ", " ",
-      "X", "O", " ",
-      "X", " ", "O"
-    ])
-    player = HardMachine.new("X")
-    score = player.score(board, 0)
-    expect(score).to eql(10)
-  end
-
-  it "gives a loosing move a score of -10" do
-    board = Board.create_from_array([
-      "O", " ", " ",
-      " ", "O", " ",
-      "X", "X", "O"
-    ])
-    player = HardMachine.new("X")
-    score = player.score(board, 0)
-    expect(score).to eql(-10)
-
-  end
-
   it "draws a game against another HardMachine" do
     player1 = HardMachine.new("X")
     player2 = HardMachine.new("O")
@@ -101,8 +78,6 @@ RSpec.describe HardMachine do
   end
 
   def play_game(game)
-    until game.ended?
-      game.make_move
-    end
+    game.make_move until game.ended?
   end
 end
