@@ -12,6 +12,11 @@ RSpec.describe ConsoleIO do
       2. Human vs Computer
       3. Computer vs Human
       4. Computer vs Computer
+
+      -- Hard Mode  --
+      5. Human vs Computer
+      6. Computer vs Human
+      7. Computer vs Computer
     HEREDOC
 
     output = StringIO.new

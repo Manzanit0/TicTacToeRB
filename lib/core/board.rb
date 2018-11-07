@@ -61,10 +61,6 @@ class Board
     @board[position] = player.symbol
   end
 
-  def unmark_tile(position)
-    @board[position] = UNCHECKED_TILE
-  end
-
   def complete?
     !@board.include?(UNCHECKED_TILE)
   end

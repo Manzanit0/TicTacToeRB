@@ -22,6 +22,10 @@ class ConsoleIO
     @out.puts "#{GameOptions::HUMAN_VS_MACHINE}. Human vs Computer"
     @out.puts "#{GameOptions::MACHINE_VS_HUMAN}. Computer vs Human"
     @out.puts "#{GameOptions::MACHINE_VS_MACHINE}. Computer vs Computer\n"
+    @out.puts "\n-- Hard Mode  --"
+    @out.puts "#{GameOptions::HUMAN_VS_HARD_MACHINE}. Human vs Computer\n"
+    @out.puts "#{GameOptions::HARD_MACHINE_VS_HUMAN}. Computer vs Human\n"
+    @out.puts "#{GameOptions::HARD_MACHINE_VS_HARD_MACHINE}. Computer vs Computer\n"
   end
 
   def print_row(board, row)
@@ -50,8 +54,25 @@ class ConsoleIO
 
   def get_menu_option
     @out.print "Choose a game mode to begin: "
-    regex = Regexp.new("^([#{GameOptions::HUMAN_VS_HUMAN}#{GameOptions::HUMAN_VS_MACHINE}#{GameOptions::MACHINE_VS_HUMAN}#{GameOptions::MACHINE_VS_MACHINE}])$")
-    get_valid_input(regex, "The only valid options are [#{GameOptions::HUMAN_VS_HUMAN}, #{GameOptions::HUMAN_VS_MACHINE}, #{GameOptions::MACHINE_VS_HUMAN}, #{GameOptions::MACHINE_VS_MACHINE}]: ")
+    regex = Regexp.new("^([
+      #{GameOptions::HUMAN_VS_HUMAN}
+      #{GameOptions::HUMAN_VS_MACHINE}
+      #{GameOptions::MACHINE_VS_HUMAN}
+      #{GameOptions::MACHINE_VS_MACHINE}
+      #{GameOptions::HUMAN_VS_HARD_MACHINE}
+      #{GameOptions::HARD_MACHINE_VS_HUMAN}
+      #{GameOptions::HARD_MACHINE_VS_HARD_MACHINE}
+    ])$")
+
+    get_valid_input(regex, "The only valid options are [
+      #{GameOptions::HUMAN_VS_HUMAN},
+      #{GameOptions::HUMAN_VS_MACHINE},
+      #{GameOptions::MACHINE_VS_HUMAN},
+      #{GameOptions::MACHINE_VS_MACHINE},
+      #{GameOptions::HUMAN_VS_HARD_MACHINE},
+      #{GameOptions::HARD_MACHINE_VS_HUMAN},
+      #{GameOptions::HARD_MACHINE_VS_HARD_MACHINE}
+      ]: ")
   end
 
   def get_restart_option
