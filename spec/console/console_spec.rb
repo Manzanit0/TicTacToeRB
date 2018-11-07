@@ -21,7 +21,7 @@ RSpec.describe Console do
 
     console.play
 
-    expect(console.game.has_ended?).to eql(true)
+    expect(console.game.ended?).to eql(true)
   end
 
   it "restarts the game upon 'Yes' input" do
@@ -32,6 +32,6 @@ RSpec.describe Console do
 
     console.play
 
-    expect(console.game.has_ended?).to eql(true)
+    expect(console.game.ended?).to eql(true)
   end
 end

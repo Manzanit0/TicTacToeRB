@@ -72,7 +72,7 @@ RSpec.describe ConsoleIO do
 
     io.print_results(game)
 
-    expect(game.winner).not_to eql(nil)
+    expect(game.winner).to eql(player1)
     expect(output.string).to eql(EXPECTED_WINNER_MSG)
   end
 
@@ -100,4 +100,3 @@ RSpec.describe ConsoleIO do
     expect(io.get_restart_option).to eql("Y")
   end
 end
-  

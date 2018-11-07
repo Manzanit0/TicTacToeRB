@@ -10,7 +10,7 @@ class Console
 
   def play
     setup_game
-    until @game.has_ended?
+    until @game.ended?
       process_turn
     end
     @io.print_results(@game)

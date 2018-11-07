@@ -1,5 +1,5 @@
 class Board
-  UNCHECKED_TILE = ' '
+  UNCHECKED_TILE = " "
 
   attr_reader :size
   attr_accessor :board
@@ -54,7 +54,7 @@ class Board
   end
 
   def available_tiles
-   @board.each_index.select { |index| @board[index] == UNCHECKED_TILE}
+    @board.each_index.select { |index| @board[index] == UNCHECKED_TILE}
   end
 
   def mark_tile(position, player)
@@ -69,11 +69,11 @@ class Board
     !@board.include?(UNCHECKED_TILE)
   end
 
-  def is_free?(position)
+  def free_tile?(position)
     @board[position] == UNCHECKED_TILE
   end
 
-  def has_won?(player)
+  def won?(player)
     return true if diagonal.all? { |tile| tile == player.symbol }
     return true if anti_diagonal.all? { |tile| tile == player.symbol }
 

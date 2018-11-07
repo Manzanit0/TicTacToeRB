@@ -16,12 +16,12 @@ class Player
   end
 
   def ==(other)
-    return false if other == nil
+    return false if other.nil?
     @symbol == other.symbol
   end
 
   def !=(other)
-    return false if other == nil
+    return false if other.nil?
     @symbol != other.symbol
   end
 end

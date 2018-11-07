@@ -19,13 +19,13 @@ class Game
     @current_player = @current_player == @player1 ? @player2 : @player1
   end
 
-  def has_ended?
-    @board.complete? || @board.has_won?(@player1) || @board.has_won?(@player2)
+  def ended?
+    @board.complete? || @board.won?(@player1) || @board.won?(@player2)
   end
 
   def winner
-    return @player1 if @board.has_won?(@player1)
-    return @player2 if @board.has_won?(@player2)
+    return @player1 if @board.won?(@player1)
+    return @player2 if @board.won?(@player2)
     nil
   end
 end

@@ -74,7 +74,7 @@ RSpec.describe HardMachine do
 
     play_game(game)
 
-    expect(game.has_ended?).to eql(true)
+    expect(game.ended?).to eql(true)
     expect(game.winner).to eql(nil)
   end
 
@@ -90,7 +90,7 @@ RSpec.describe HardMachine do
 
     play_game(game)
 
-    expect(game.has_ended?).to eql(true)
+    expect(game.ended?).to eql(true)
     expect(game.winner).to eql(player1)
   end
 
@@ -101,7 +101,7 @@ RSpec.describe HardMachine do
   end
 
   def play_game(game)
-    until game.has_ended?
+    until game.ended?
       game.make_move
     end
   end

@@ -12,9 +12,7 @@ class ConsoleIO
   end
 
   def print_results(game)
-    if game.winner != nil
-      @out.puts "The winner is #{game.winner.symbol}"
-    end
+    @out.puts "The winner is #{game.winner.symbol}" unless game.winner.nil?
   end
 
   def print_menu

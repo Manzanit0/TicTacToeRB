@@ -18,7 +18,7 @@ class HardMachine < Player
   end
 
   def minimax(board, depth)
-    return score(board, depth) if (board.complete? || board.has_won?(self) || board.has_won?(@opponent))
+    return score(board, depth) if (board.complete? || board.won?(self) || board.won?(@opponent))
     depth += 1
     scores, moves = [], []
 
@@ -42,9 +42,9 @@ class HardMachine < Player
   end
 
   def score(board, depth)
-    if board.has_won?(self)
+    if board.won?(self)
       10 - depth
-    elsif board.has_won?(@opponent)
+    elsif board.won?(@opponent)
       depth - 10
     else
       0 # In case it's a draw.

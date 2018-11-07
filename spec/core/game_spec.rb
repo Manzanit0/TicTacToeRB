@@ -31,7 +31,7 @@ RSpec.describe Game do
         @game.board.mark_tile(i, @player1)
     end
 
-    expect(@game.has_ended?).to eql(true)
+    expect(@game.ended?).to eql(true)
   end
 
   it "Mark the @game as ended if a player has won via ROW" do
@@ -39,7 +39,7 @@ RSpec.describe Game do
       @game.board.mark_tile(i, @player1)
     end
 
-    expect(@game.has_ended?).to eql(true)
+    expect(@game.ended?).to eql(true)
   end
 
   it "Mark the @game as ended if a player has won via COLUMN" do
@@ -47,7 +47,7 @@ RSpec.describe Game do
     @game.board.mark_tile(3, @player1)
     @game.board.mark_tile(0, @player1)
 
-    expect(@game.has_ended?).to eql(true)
+    expect(@game.ended?).to eql(true)
   end
 
   it "Mark the @game as ended if a player has won via DIAGONAL" do
@@ -55,7 +55,7 @@ RSpec.describe Game do
     @game.board.mark_tile(4, @player1)
     @game.board.mark_tile(8, @player1)
 
-    expect(@game.has_ended?).to eql(true)
+    expect(@game.ended?).to eql(true)
   end
 
   it "Mark the @game as ended if a player has won via ANTI-DIAGONAL" do
@@ -63,7 +63,7 @@ RSpec.describe Game do
     @game.board.mark_tile(4, @player1)
     @game.board.mark_tile(6, @player1)
 
-    expect(@game.has_ended?).to eql(true)
+    expect(@game.ended?).to eql(true)
   end
 
   it "Returns the winning player, if there is one" do
