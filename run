@@ -6,6 +6,10 @@ $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
 require "console/console"
 
-io = ConsoleIO.new
-console = Console.new(io)
-console.play
+begin
+  io = ConsoleIO.new
+  console = Console.new(io)
+  console.play
+rescue Interrupt => e
+  puts "\n\nExiting the game..."
+end

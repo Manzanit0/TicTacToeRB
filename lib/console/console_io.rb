@@ -54,15 +54,7 @@ class ConsoleIO
 
   def get_menu_option
     @out.print "Choose a game mode to begin: "
-    regex = Regexp.new("^([
-      #{GameOptions::HUMAN_VS_HUMAN}
-      #{GameOptions::HUMAN_VS_MACHINE}
-      #{GameOptions::MACHINE_VS_HUMAN}
-      #{GameOptions::MACHINE_VS_MACHINE}
-      #{GameOptions::HUMAN_VS_HARD_MACHINE}
-      #{GameOptions::HARD_MACHINE_VS_HUMAN}
-      #{GameOptions::HARD_MACHINE_VS_HARD_MACHINE}
-    ])$")
+    regex = Regexp.new("^([#{GameOptions::HUMAN_VS_HUMAN}-#{GameOptions::HARD_MACHINE_VS_HARD_MACHINE}])$")
 
     get_valid_input(regex, "The only valid options are [
       #{GameOptions::HUMAN_VS_HUMAN},
