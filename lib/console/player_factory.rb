@@ -3,19 +3,19 @@ require "core/machine"
 require "core/hard_machine"
 
 module PlayerOptions
-  Machine = "Machine"
-  HardMachine = "HardMachine"
-  Human = "Human"
+  MACHINE = "Machine"
+  HARD_MACHINE = "HardMachine"
+  HUMAN = "Human"
 end
 
 class PlayerFactory
   def create_player(type, symbol)
     case type
-    when PlayerOptions::Human
+    when PlayerOptions::HUMAN
       CliPlayer.new(symbol)
-    when PlayerOptions::Machine
+    when PlayerOptions::MACHINE
       Machine.new(symbol)
-    when PlayerOptions::HardMachine
+    when PlayerOptions::HARD_MACHINE
       HardMachine.new(symbol)
     else
       raise NotImplementedError.

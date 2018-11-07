@@ -21,6 +21,10 @@ class Board
     instance
   end
 
+  def total_tiles
+    @size * @size
+  end
+
   def tile(position)
     @board[position]
   end
@@ -36,7 +40,7 @@ class Board
   def diagonal
     tiles = []
     position = 0
-    until position > (size*size - 1) # In a 3x3 board, that would be 8 due to 0-based indexes.
+    until position > (total_tiles - 1) # In a 3x3 board, that would be 8 due to 0-based indexes.
       tiles << @board[position]
       position = position + @size + 1
     end
@@ -46,7 +50,7 @@ class Board
   def anti_diagonal
     tiles = []
     position = @size - 1
-    until position > (@size*@size - @size)
+    until position > (total_tiles - @size)
       tiles << @board[position]
       position = position + (@size - 1)
     end

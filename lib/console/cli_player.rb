@@ -21,7 +21,7 @@ class CliPlayer < Player
   private
 
   def valid_move?(answer, board)
-    regex = Regexp.new("^([0-#{board.size*board.size}])$")
+    regex = Regexp.new("^([0-#{board.total_tiles}])$")
     answer.match(regex) && board.free_tile?(answer.to_i)
   end
 end

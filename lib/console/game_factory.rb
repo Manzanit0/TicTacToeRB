@@ -18,26 +18,26 @@ class GameFactory
 
     case option
     when GameOptions::HUMAN_VS_HUMAN
-      player1 = p_factory.create_player(PlayerOptions::Human, "X")
-      player2 = p_factory.create_player(PlayerOptions::Human, "O")
+      player1 = p_factory.create_player(PlayerOptions::HUMAN, "X")
+      player2 = p_factory.create_player(PlayerOptions::HUMAN, "O")
     when GameOptions::HUMAN_VS_MACHINE
-      player1 = p_factory.create_player(PlayerOptions::Human, "X")
-      player2 = p_factory.create_player(PlayerOptions::Machine, "O")
+      player1 = p_factory.create_player(PlayerOptions::HUMAN, "X")
+      player2 = p_factory.create_player(PlayerOptions::MACHINE, "O")
     when GameOptions::MACHINE_VS_HUMAN
-      player1 = p_factory.create_player(PlayerOptions::Machine, "X")
-      player2 = p_factory.create_player(PlayerOptions::Human, "O")
+      player1 = p_factory.create_player(PlayerOptions::MACHINE, "X")
+      player2 = p_factory.create_player(PlayerOptions::HUMAN, "O")
     when GameOptions::MACHINE_VS_MACHINE
-      player1 = p_factory.create_player(PlayerOptions::Machine, "X")
-      player2 = p_factory.create_player(PlayerOptions::Machine, "O")
+      player1 = p_factory.create_player(PlayerOptions::MACHINE, "X")
+      player2 = p_factory.create_player(PlayerOptions::MACHINE, "O")
     when GameOptions::HUMAN_VS_HARD_MACHINE
-      player1 = p_factory.create_player(PlayerOptions::Human, "X")
-      player2 = p_factory.create_player(PlayerOptions::HardMachine, "O")
+      player1 = p_factory.create_player(PlayerOptions::HUMAN, "X")
+      player2 = p_factory.create_player(PlayerOptions::HARD_MACHINE, "O")
     when GameOptions::HARD_MACHINE_VS_HUMAN
-      player1 = p_factory.create_player(PlayerOptions::HardMachine, "X")
-      player2 = p_factory.create_player(PlayerOptions::Human, "O")
+      player1 = p_factory.create_player(PlayerOptions::HARD_MACHINE, "X")
+      player2 = p_factory.create_player(PlayerOptions::HUMAN, "O")
     when GameOptions::HARD_MACHINE_VS_HARD_MACHINE
-      player1 = p_factory.create_player(PlayerOptions::HardMachine, "X")
-      player2 = p_factory.create_player(PlayerOptions::HardMachine, "O")
+      player1 = p_factory.create_player(PlayerOptions::HARD_MACHINE, "X")
+      player2 = p_factory.create_player(PlayerOptions::HARD_MACHINE, "O")
     else
       raise NotImplementedError.
         new("#{option}# is not a valid game option.")
