@@ -1,9 +1,10 @@
 require "core/board"
 require "core/player"
 
+# HardMachine class follows the minmax algorithm to choose the next move.
+# The algorithm has been implemented taking into account depth in order
+# to be able to identify quicker wins over longer ones.
 class HardMachine < Player
-  # Depth is tracked in order to be able to identify quicker wins.
-  # A value 1 means a win in one turn.
   INITIAL_DEPTH = 0
 
   def initialize(symbol)
@@ -12,7 +13,7 @@ class HardMachine < Player
   end
 
   def get_move(board)
-    @current_player = self # We need to keep track of turns since HardMachine class simulates a game.
+    @current_player = self
     minimax(board, INITIAL_DEPTH)
     @choice
   end
@@ -47,7 +48,7 @@ class HardMachine < Player
     elsif board.won?(@opponent)
       depth - 10
     else
-      0 # In case it's a draw.
+      0
     end
   end
 
